@@ -1,21 +1,31 @@
-# mi_papp
+# Pillbox
 
-A new Flutter project.
+Pillbox ayuda a organizar tratamientos farmacológicos con dosis
+periódicas, generando automáticamente horarios de administración que
+respetan el descanso nocturno del usuario. Envía recordatorios y alarmas
+para cada dosis, y lleva un historial de cumplimiento del tratamiento.
 
-## Getting Started
+## El dominio
 
-This project is a starting point for a Flutter application.
+- `Usuario`          — entidad principal. Identidad: `id`.
+- `PreferenciaHoraria` — objeto de valor.
+- `EstadoUsuario`    — sellada: Activo · Configurando · Inactivo.
 
-A few resources to get you started if this is your first Flutter project:
+Decisión: modelo generado con freezed para `==`, `copyWith` y `toString`,
+pero con `fromJson`/`toJson` escritos a mano (`@Freezed(fromJson: false, toJson: false)`),
+porque el mensaje de error de `CampoInvalido` es más útil en producción que el
+genérico de `json_serializable`.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+Se perdió el `assert` de validación en `Inactivo.motivo` (freezed no soporta
+asserts en el constructor generado) y la protección de `copyWith` sobre `id`
+y `creadoEn`, que en la versión a mano eran inmutables por diseño.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Los archivos `*.freezed.dart` no se versionan (ver `.gitignore`); el CI los
+regenera antes de correr los tests.
 
+## Cómo correrlo
 
-## Flutter doctor screenshot
-![Flutter Doctor](./imagenes/screan1.png)
+    flutter pub get
+    dart run build_runner build --delete-conflicting-outputs
+    flutter test
+    flutter run
