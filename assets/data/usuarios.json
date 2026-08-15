@@ -1,0 +1,45 @@
+[
+  {
+    "id": "usr-001",
+    "nombre": "Daniel",
+    "correo": "daniel@gmail.com",
+    "creadoEn": "2026-08-15T19:00:00Z",
+    "preferenciaHoraria": {
+      "horaInicioDia": "06:00",
+      "horaFinDia": "23:00",
+      "minutosRecordatorio": 15
+    },
+    "estado": {
+      "tipo": "activo"
+    }
+  },
+  {
+    "id": "usr-002",
+    "nombre": "Laura",
+    "correo": "laura@gmail.com",
+    "creadoEn": "2026-08-14T15:30:00Z",
+    "preferenciaHoraria": {
+      "horaInicioDia": "07:00",
+      "horaFinDia": "22:00",
+      "minutosRecordatorio": 30
+    },
+    "estado": {
+      "tipo": "configurando",
+      "pasoActual": "preferencias_horarias"
+    }
+  },
+  {
+    "id": "usr-003",
+    "nombre": "Carlos",
+    "creadoEn": "2026-08-10T18:00:00Z",
+    "preferenciaHoraria": {
+      "horaInicioDia": "06:30",
+      "horaFinDia": "23:00",
+      "minutosRecordatorio": 15
+    },
+    "estado": {
+      "tipo": "inactivo",
+      "motivo": "usuario_desactivo_cuenta"
+    }
+  }
+]
